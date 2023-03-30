@@ -1,0 +1,129 @@
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbook        |
+| addressbooks       |
+| aditya             |
+| aditya3            |
+| akash              |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| prakash            |
+| satya              |
+| satyadb            |
+| sonoo              |
+| sys                |
+| usp                |
+| workshop           |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> create personDetails(firstName varchar(55),lastName varchar(55),address varchar(55),cityName varchar(55),zip int,phoneNumber int,email varchar(55),personId int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'personDetails(firstName varchar(55),lastName varchar(55),address varchar(55),cit' at line 1
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use addressbook;
+Database changed
+mysql> create table personDetails(firstName varchar(55),lastName varchar(55),address varchar(55),cityName varchar(55),zip int,phoneNumber int,email varchar(55),personId int);
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_addressbook |
++-----------------------+
+| persondetails         |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> desc personDtails;
+ERROR 1146 (42S02): Table 'addressbook.persondtails' doesn't exist
+mysql> desc personDetails;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| firstName   | varchar(55) | YES  |     | NULL    |       |
+| lastName    | varchar(55) | YES  |     | NULL    |       |
+| address     | varchar(55) | YES  |     | NULL    |       |
+| cityName    | varchar(55) | YES  |     | NULL    |       |
+| zip         | int         | YES  |     | NULL    |       |
+| phoneNumber | int         | YES  |     | NULL    |       |
+| email       | varchar(55) | YES  |     | NULL    |       |
+| personId    | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into personDetails(firstName,lastName,address,cityName,zip,phoneNumber,email,personId) values('satya','yadav','uttarpradesh gorakhpur','gorakhpur',274702,7052606198,'sspra',1);
+ERROR 1264 (22003): Out of range value for column 'phoneNumber' at row 1
+mysql> insert into personDetails(firstName,lastName,address,cityName,zip,phoneNumber,email,personId) values('satya','yadav','uttarpradesh gorakhpur','gorakhpur',274702,705223,'sspra',1);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select *from personDetails;
++-----------+----------+------------------------+-----------+--------+-------------+-------+----------+
+| firstName | lastName | address                | cityName  | zip    | phoneNumber | email | personId |
++-----------+----------+------------------------+-----------+--------+-------------+-------+----------+
+| satya     | yadav    | uttarpradesh gorakhpur | gorakhpur | 274702 |      705223 | sspra |        1 |
++-----------+----------+------------------------+-----------+--------+-------------+-------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into personDetails(firstName,lastName,address,cityName,zip,phoneNumber,email,personId) values('kundan','chauhan','bihar','shivdhar',274742,705723,'kkspra',2);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> insert into personDetails(firstName,lastName,address,cityName,zip,phoneNumber,email,personId) values('shubham','kumar','maharasta','hydrabad',27342,7057323,'kspra',3);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_addressbook |
++-----------------------+
+| persondetails         |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select *from personDetails;
++-----------+----------+------------------------+-----------+--------+-------------+--------+----------+
+| firstName | lastName | address                | cityName  | zip    | phoneNumber | email  | personId |
++-----------+----------+------------------------+-----------+--------+-------------+--------+----------+
+| satya     | yadav    | uttarpradesh gorakhpur | gorakhpur | 274702 |      705223 | sspra  |        1 |
+| kundan    | chauhan  | bihar                  | shivdhar  | 274742 |      705723 | kkspra |        2 |
+| shubham   | kumar    | maharasta              | hydrabad  |  27342 |     7057323 | kspra  |        3 |
++-----------+----------+------------------------+-----------+--------+-------------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select firstName,lastName from personDetails;
++-----------+----------+
+| firstName | lastName |
++-----------+----------+
+| satya     | yadav    |
+| kundan    | chauhan  |
+| shubham   | kumar    |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table personDetails;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> drop column personId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column personId' at line 1
+mysql> add personDepartment varchar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add personDepartment varchar(255)' at line 1
+mysql> desc personDetails;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| firstName   | varchar(55) | YES  |     | NULL    |       |
+| lastName    | varchar(55) | YES  |     | NULL    |       |
+| address     | varchar(55) | YES  |     | NULL    |       |
+| cityName    | varchar(55) | YES  |     | NULL    |       |
+| zip         | int         | YES  |     | NULL    |       |
+| phoneNumber | int         | YES  |     | NULL    |       |
+| email       | varchar(55) | YES  |     | NULL    |       |
+| personId    | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select firstName,lastName from personDetails;
